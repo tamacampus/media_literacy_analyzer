@@ -93,20 +93,24 @@
 
 [cm  ]
 [iscript]
-// 説明文を改ページ用に分割（全ページ80文字）
+// 説明文を改ページ用に分割（1ページ目80文字、2ページ目以降120文字）
 f.explanationPages = [];
-const maxCharsPerPage = 80;
+const firstPageChars = 80;
+const otherPageChars = 120;
 const fullText = f.riskExplanation || "";
 
-if (fullText.length <= maxCharsPerPage) {
+if (fullText.length <= firstPageChars) {
     // 短い場合はそのまま1ページに
     f.explanationPages.push(fullText);
 } else {
     // 長い場合は分割
     let currentPosition = 0;
+    let pageIndex = 0;
     
     while (currentPosition < fullText.length) {
-        let endPosition = Math.min(currentPosition + maxCharsPerPage, fullText.length);
+        // 現在のページの最大文字数を決定（1ページ目は80文字、それ以降は120文字）
+        const maxCharsForCurrentPage = pageIndex === 0 ? firstPageChars : otherPageChars;
+        let endPosition = Math.min(currentPosition + maxCharsForCurrentPage, fullText.length);
         
         // 文の途中で切れないように調整（句読点を探す）
         if (endPosition < fullText.length) {
@@ -115,13 +119,14 @@ if (fullText.length <= maxCharsPerPage) {
             const breakPoint = Math.max(lastPeriod, lastComma);
             
             // 句読点が見つかり、かつ最大文字数の半分以上の位置にあれば、そこで区切る
-            if (breakPoint > currentPosition && breakPoint - currentPosition > maxCharsPerPage / 2) {
+            if (breakPoint > currentPosition && breakPoint - currentPosition > maxCharsForCurrentPage / 2) {
                 endPosition = breakPoint + 1;
             }
         }
         
         f.explanationPages.push(fullText.substring(currentPosition, endPosition));
         currentPosition = endPosition;
+        pageIndex++;
     }
 }
 
