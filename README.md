@@ -1,7 +1,7 @@
 # メディアリテラシー分析プラグイン
 
 ## 概要
-これはmedia_literacy_game_backendをティラノビルダーから呼び出すためのプラグインです。
+これは[media_literacy_game_backend](https://github.com/tamacampus/media_literacy_game_backend)をティラノビルダーから呼び出すためのプラグインです。
 投稿文や謝罪文をメディアリテラシーの観点から分析し、リスクレベルを判定します。
 
 ## 機能
