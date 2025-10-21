@@ -29,7 +29,7 @@ module.exports = class plugin_setting {
         app.config.project_config["map_var"]["riskLevel"]={"val":"0","kind":"f"};
         app.config.project_config["map_var"]["riskLevelText"]={"val":"リスクレベル(テキスト)","kind":"f"};
         app.config.project_config["map_var"]["riskExplanation"]={"val":"リスク説明","kind":"f"};
-        app.config.project_config["map_var"]["acceptToResearch"]={"val":false,"kind":"f"};
+        app.config.project_config["map_var"]["agreedToResearch"]={"val":0,"kind":"f"};
     }
     
     /*

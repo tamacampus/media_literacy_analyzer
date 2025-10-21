@@ -3,10 +3,11 @@
 [iscript]
 (async () => {
     try {
+        const agreedToResearch = (f.agreedToResearch === 1) ? true : false;
         // APIリクエストのパラメータを準備
         const requestData = {
             text: f.analysisInput,
-            acceptToResearch: f.acceptToResearch || false
+            agreedToResearch: agreedToResearch
         };
         
         // 文脈情報が指定されている場合は追加
