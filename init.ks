@@ -5,7 +5,8 @@
     try {
         // APIリクエストのパラメータを準備
         const requestData = {
-            text: f.analysisInput
+            text: f.analysisInput,
+            acceptToResearch: f.acceptToResearch || false
         };
         
         // 文脈情報が指定されている場合は追加
